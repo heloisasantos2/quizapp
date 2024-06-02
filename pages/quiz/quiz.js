@@ -1,5 +1,6 @@
 import { verificarTema, trocarTema } from "../../helpers/tema-helper.js";
 
+
 const botaoTema = document.querySelector(".tema button")
 const body = document.querySelector("body")
 const assunto = localStorage.getItem("assunto")
@@ -34,21 +35,20 @@ async function buscarPerguntas() {
     await fetch(urlDados).then(resposta => resposta.json()).then(dados => {
         dados.quizzes.forEach(dado => {
             if (dado.title === assunto) {
-                quiz = dado
+                quiz = dado;
             }
         })
     })
 }
 
 function montarPergunta() {
-    const main = document.querySelector("main")
+    const main = document.querySelector("main");
     
         main.innerHTML = `
-            <section class="pergunta">
+        <section class="pergunta">
             <div>
-                <p>Questâo ${pergunta} de 10</p>
-
-                <h2>${alterarSinais(quiz.questions[pergunta-1].question)}</h2>
+                <p>Questão ${pergunta} de 10</p>
+                <h2>${alterarSinais(quiz.questions[pergunta-1].question)}}</h2>
             </div>
             <div class="barra_progresso">
                 <div style="width: ${pergunta * 10}%"></div>
